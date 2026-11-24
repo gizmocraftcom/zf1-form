@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_Form_Element_Hash
@@ -29,8 +30,8 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Form
  */
+#[Group('Zend_Form')]
 class Zend_Form_Element_HashTest extends PHPUnit\Framework\TestCase
 {
     protected $hash;
@@ -177,9 +178,7 @@ class Zend_Form_Element_HashTest extends PHPUnit\Framework\TestCase
         $this->assertMatchesRegularExpression('/<input[^>]*?type="hidden"/', $html, $html);
     }
 
-    /**
-     * @group ZF-7404
-     */
+    #[Group('ZF-7404')]
     public function testShouldRenderHashTokenIfRenderedThroughMagicCall()
     {
         $this->element->setView($this->getView());

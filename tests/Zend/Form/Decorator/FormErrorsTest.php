@@ -20,6 +20,8 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\DataProvider;
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_Form_Decorator_FormErrors
@@ -29,8 +31,8 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Form
  */
+#[Group('Zend_Form')]
 class Zend_Form_Decorator_FormErrorsTest extends PHPUnit\Framework\TestCase
 {
     protected $decorator;
@@ -285,9 +287,7 @@ class Zend_Form_Decorator_FormErrorsTest extends PHPUnit\Framework\TestCase
     }
 
 
-    /**
-     * @dataProvider markupOptionMethodsProvider
-     */
+    #[DataProvider('markupOptionMethodsProvider')]
     public function testMarkupOptionsMayBeMutated($property)
     {
         $setter = 'set' . $property;
@@ -301,9 +301,7 @@ class Zend_Form_Decorator_FormErrorsTest extends PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-11151
-     */
+    #[Group('ZF-11151')]
     public function testOptionShowCustomFormErrors()
     {
         $this->decorator
@@ -312,9 +310,7 @@ class Zend_Form_Decorator_FormErrorsTest extends PHPUnit\Framework\TestCase
         $this->assertTrue($this->decorator->getShowCustomFormErrors());
     }
 
-    /**
-     * @group ZF-11225
-     */
+    #[Group('ZF-11225')]
     public function testRenderingEscapesFormErrorsByDefault()
     {
         $this->setupForm();
@@ -324,9 +320,7 @@ class Zend_Form_Decorator_FormErrorsTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('&lt;strong&gt;form-badness&lt;/strong&gt;', $html);
     }
 
-    /**
-     * @group ZF-11225
-     */
+    #[Group('ZF-11225')]
     public function testCanDisableEscapingFormErrors()
     {
         $this->setupForm();
@@ -345,9 +339,7 @@ class Zend_Form_Decorator_FormErrorsTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('<li><b><strong>Sub Bar: </strong>', $html);
     }
 
-    /**
-     * @group ZF-8713
-     */
+    #[Group('ZF-8713')]
     public function testElementNameIsTranslated()
     {
         // Translator

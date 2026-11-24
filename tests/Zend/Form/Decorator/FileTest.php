@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_Form_Decorator_Errors
@@ -29,8 +30,8 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Form
  */
+#[Group('Zend_Form')]
 class Zend_Form_Decorator_FileTest extends PHPUnit\Framework\TestCase
 {
     protected $decorator;
@@ -152,9 +153,7 @@ class Zend_Form_Decorator_FileTest extends PHPUnit\Framework\TestCase
         $this->assertMatchesRegularExpression('#<input[^>]*>.*?(content)#s', $file, $file);
     }
 
-    /**
-     * @group ZF-10519
-     */
+    #[Group('ZF-10519')]
     public function testCanChangeViewHelper()
     {
         $element = new Zend_Form_Element_File('foo');

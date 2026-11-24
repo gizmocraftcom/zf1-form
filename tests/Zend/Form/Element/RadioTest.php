@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_Form_Element_Radio
@@ -29,8 +30,8 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Form
  */
+#[Group('Zend_Form')]
 class Zend_Form_Element_RadioTest extends PHPUnit\Framework\TestCase
 {
     protected $element;
@@ -151,9 +152,7 @@ class Zend_Form_Element_RadioTest extends PHPUnit\Framework\TestCase
         $this->assertMatchesRegularExpression('#<dt[^>]*>&\#160;</dt>.*?<dd#s', $html, $html);
     }
 
-    /**
-     * @group ZF-9682
-     */
+    #[Group('ZF-9682')]
     public function testCustomLabelDecorator()
     {
         $form = new Zend_Form();
@@ -168,9 +167,7 @@ class Zend_Form_Element_RadioTest extends PHPUnit\Framework\TestCase
         );
     }
 
-    /**
-     * @group ZF-6426
-     */
+    #[Group('ZF-6426')]
     public function testRenderingShouldCreateLabelWithoutForAttribute()
     {
         $this->element->setMultiOptions(array(
@@ -182,9 +179,7 @@ class Zend_Form_Element_RadioTest extends PHPUnit\Framework\TestCase
         $this->assertStringNotContainsString('for="foo"', $html);
     }
 
-    /**
-     * @group ZF-11517
-     */
+    #[Group('ZF-11517')]
     public function testCreationWithIndividualDecoratorsAsConstructorOptionsWithoutLabel()
     {
         $element = new Zend_Form_Element_Radio(array(
@@ -201,9 +196,7 @@ class Zend_Form_Element_RadioTest extends PHPUnit\Framework\TestCase
         $this->assertFalse($element->getDecorator('label'));
     }
 
-    /**
-     * @group ZF-11517
-     */
+    #[Group('ZF-11517')]
     public function testRenderingWithIndividualDecoratorsAsConstructorOptionsWithoutLabel()
     {
         $element = new Zend_Form_Element_Radio(array(

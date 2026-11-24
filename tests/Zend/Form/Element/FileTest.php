@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_Form_Element_File
@@ -29,8 +30,8 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Form
  */
+#[Group('Zend_Form')]
 class Zend_Form_Element_FileTest extends PHPUnit\Framework\TestCase
 {
     /**
@@ -476,9 +477,7 @@ class Zend_Form_Element_FileTest extends PHPUnit\Framework\TestCase
         $this->assertSame($this->element, $this->element->loadDefaultDecorators());
     }
 
-    /**
-     * @group ZF-12173
-     */
+    #[Group('ZF-12173')]
     public function testElementShouldAllowAdapterWithBackslahes()
     {
         $this->element->addPrefixPath(
@@ -496,9 +495,7 @@ class Zend_Form_Element_FileTest extends PHPUnit\Framework\TestCase
         );
     }
 
-    /**
-     * @group ZF-12210
-     */
+    #[Group('ZF-12210')]
     public function testAutoInsertNotEmptyValidator()
     {
         $this->testElementShouldAllowSpecifyingAdapterUsingConcreteInstance();
@@ -515,9 +512,7 @@ class Zend_Form_Element_FileTest extends PHPUnit\Framework\TestCase
         );
     }
 
-    /**
-     * @group GH-247
-     */
+    #[Group('GH-247')]
     public function testCallbackFunctionAtHtmlTag()
     {
         $this->assertEquals(
@@ -531,9 +526,7 @@ class Zend_Form_Element_FileTest extends PHPUnit\Framework\TestCase
         );
     }
 
-    /**
-     * @group GH-247
-     */
+    #[Group('GH-247')]
     public function testDefaultDecoratorOrder()
     {
         $expected = array(

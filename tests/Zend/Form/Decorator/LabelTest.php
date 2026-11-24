@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_Form_Decorator_Label
@@ -29,8 +30,8 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Form
  */
+#[Group('Zend_Form')]
 class Zend_Form_Decorator_LabelTest extends PHPUnit\Framework\TestCase
 {
     protected $decorator;
@@ -190,9 +191,7 @@ class Zend_Form_Decorator_LabelTest extends PHPUnit\Framework\TestCase
         $this->assertMatchesRegularExpression('/-req-prefix-[^-]*?My Label[^-]*-req-suffix-/s', $test, $test);
     }
 
-    /**
-     * @group ZF-3538
-     */
+    #[Group('ZF-3538')]
     public function testRenderShouldNotUtilizeElementClass()
     {
         $element = new Zend_Form_Element('foo');
@@ -275,9 +274,7 @@ class Zend_Form_Decorator_LabelTest extends PHPUnit\Framework\TestCase
         $this->assertEmpty($content, $content);
     }
 
-    /**
-     * @group ZF-4841
-     */
+    #[Group('ZF-4841')]
     public function testSettingTagToEmptyValueShouldSetTagToNull()
     {
         $element = new Zend_Form_Element_Text('foo', array('label' => 'Foo'));
@@ -289,9 +286,7 @@ class Zend_Form_Decorator_LabelTest extends PHPUnit\Framework\TestCase
     }
 
 
-    /**
-     * @group ZF-4841
-     */
+    #[Group('ZF-4841')]
     public function testSettingTagClassToEmptyValueShouldSetTagClassToNull()
     {
         $element = new Zend_Form_Element_Text('foo', array('label' => 'Foo'));
@@ -302,9 +297,7 @@ class Zend_Form_Decorator_LabelTest extends PHPUnit\Framework\TestCase
         $this->assertNull($tagClass);
     }
 
-    /**
-     * @group ZF-6667
-     */
+    #[Group('ZF-6667')]
     public function testRenderImplicitsOnRequest()
     {
         $element = new Zend_Form_Element('foo');
@@ -327,9 +320,7 @@ class Zend_Form_Decorator_LabelTest extends PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /**
-     * @group ZF-6667
-     */
+    #[Group('ZF-6667')]
     public function testRenderImplicitPrependsOnRequest()
     {
         $element = new Zend_Form_Element('foo');
@@ -352,9 +343,7 @@ class Zend_Form_Decorator_LabelTest extends PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /**
-     * @group ZF-6667
-     */
+    #[Group('ZF-6667')]
     public function testRenderImplicitAppendsOnRequest()
     {
         $element = new Zend_Form_Element('foo');
@@ -377,9 +366,7 @@ class Zend_Form_Decorator_LabelTest extends PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /**
-     * @group ZF-8694
-     */
+    #[Group('ZF-8694')]
     public function testLabelIsNotTranslatedTwice()
     {
         // Init translator

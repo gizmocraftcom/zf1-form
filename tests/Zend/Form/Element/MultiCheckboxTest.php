@@ -20,6 +20,8 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_Form_Element_MultiCheckbox
@@ -29,8 +31,8 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Form
  */
+#[Group('Zend_Form')]
 class Zend_Form_Element_MultiCheckboxTest extends PHPUnit\Framework\TestCase
 {
     protected $element;
@@ -138,9 +140,7 @@ class Zend_Form_Element_MultiCheckboxTest extends PHPUnit\Framework\TestCase
         $this->assertEquals(4, $count);
     }
 
-    /**
-     * @group ZF-2830
-     */
+    #[Group('ZF-2830')]
     public function testRenderingMulticheckboxCreatesCorrectArrayNotation()
     {
         $this->element->addMultiOption(1, 'A');
@@ -151,9 +151,7 @@ class Zend_Form_Element_MultiCheckboxTest extends PHPUnit\Framework\TestCase
         $this->assertEquals(2, $count);
     }
 
-    /**
-     * @group ZF-2828
-     */
+    #[Group('ZF-2828')]
     public function testCanPopulateCheckboxOptionsFromPostedData()
     {
         $form = new Zend_Form(array(
@@ -188,8 +186,8 @@ class Zend_Form_Element_MultiCheckboxTest extends PHPUnit\Framework\TestCase
     }
 
     /**#+
-     * @group ZF-3286
      */
+    #[Group('ZF-3286')]
     public function testShouldRegisterInArrayValidatorByDefault()
     {
         $this->assertTrue($this->element->registerInArrayValidator());
@@ -234,9 +232,9 @@ class Zend_Form_Element_MultiCheckboxTest extends PHPUnit\Framework\TestCase
     /**
      * No assertion; just making sure no error occurs
      *
-     * @group ZF-4915
-     * @doesNotPerformAssertions
      */
+    #[Group('ZF-4915')]
+    #[DoesNotPerformAssertions]
     public function testRetrievingErrorMessagesShouldNotResultInError()
     {
         $this->element->addMultiOptions(array(
@@ -249,9 +247,7 @@ class Zend_Form_Element_MultiCheckboxTest extends PHPUnit\Framework\TestCase
         $html = $this->element->render($this->getView());
     }
 
-    /**
-     * @group ZF-11402
-     */
+    #[Group('ZF-11402')]
     public function testValidateShouldNotAcceptEmptyArray()
     {
         $this->element->addMultiOptions(array(
@@ -288,9 +284,7 @@ class Zend_Form_Element_MultiCheckboxTest extends PHPUnit\Framework\TestCase
         $this->assertArrayHasKey('isEmpty', $messages, 'Expected \'isEmpty\' error message');
     }
 
-    /**
-     * @group ZF-12059
-     */
+    #[Group('ZF-12059')]
     public function testDisabledForAttribute()
     {
         $this->element->setLabel('Foo');
@@ -303,9 +297,7 @@ class Zend_Form_Element_MultiCheckboxTest extends PHPUnit\Framework\TestCase
         $this->assertSame($expected, $this->element->render($this->getView()));
     }
 
-    /**
-     * @group ZF-12059
-     */
+    #[Group('ZF-12059')]
     public function testDisabledForAttributeWithoutLabelDecorator()
     {
         $this->element->setLabel('Foo')->removeDecorator('label');

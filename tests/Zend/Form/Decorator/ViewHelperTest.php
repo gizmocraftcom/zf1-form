@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_Form_Decorator_ViewHelper
@@ -29,8 +30,8 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Form
  */
+#[Group('Zend_Form')]
 class Zend_Form_Decorator_ViewHelperTest extends PHPUnit\Framework\TestCase
 {
     protected $decorator;
@@ -159,9 +160,7 @@ class Zend_Form_Decorator_ViewHelperTest extends PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-9689
-     */
+    #[Group('ZF-9689')]
     public function testRenderWithListSeparatorForMulticheckbox()
     {
         $element = new Zend_Form_Element_MultiCheckbox('foo');
@@ -185,9 +184,7 @@ class Zend_Form_Decorator_ViewHelperTest extends PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /**
-     * @group ZF-9689
-     */
+    #[Group('ZF-9689')]
     public function testRenderWithListSeparatorForRadio()
     {
         $element = new Zend_Form_Element_Radio('foo');
@@ -211,9 +208,7 @@ class Zend_Form_Decorator_ViewHelperTest extends PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /**
-     * @group ZF-5056
-     */
+    #[Group('ZF-5056')]
     public function testRenderingButtonWithValue()
     {
         // Create element
@@ -234,9 +229,7 @@ class Zend_Form_Decorator_ViewHelperTest extends PHPUnit\Framework\TestCase
         );
     }
 
-    /**
-     * @group ZF-5056
-     */
+    #[Group('ZF-5056')]
     public function testRenderingButtonAsTypeSubmit()
     {
         // Create element

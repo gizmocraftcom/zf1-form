@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -27,8 +28,8 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Form
  */
+#[Group('Zend_Form')]
 class Zend_Form_SubFormTest extends PHPUnit\Framework\TestCase
 {
     protected $form;
@@ -81,9 +82,7 @@ class Zend_Form_SubFormTest extends PHPUnit\Framework\TestCase
 
     // Bugfixes
 
-    /**
-     * @group ZF-2883
-     */
+    #[Group('ZF-2883')]
     public function testDisplayGroupsShouldInheritSubFormNamespace()
     {
         $this->form->addElement('text', 'foo')
@@ -98,9 +97,7 @@ class Zend_Form_SubFormTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('name="attributes[bar]"', $html);
     }
 
-    /**
-     * @group ZF-3272
-     */
+    #[Group('ZF-3272')]
     public function testRenderedSubFormDtShouldContainNoBreakSpace()
     {
         $subForm = new Zend_Form_SubForm(array(

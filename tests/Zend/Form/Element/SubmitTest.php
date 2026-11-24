@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_Form_Element_Submit
@@ -29,8 +30,8 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Form
  */
+#[Group('Zend_Form')]
 class Zend_Form_Element_SubmitTest extends PHPUnit\Framework\TestCase
 {
     protected $element;
@@ -142,9 +143,7 @@ class Zend_Form_Element_SubmitTest extends PHPUnit\Framework\TestCase
         $this->assertEquals($translations['foo'], $submit->getLabel());
     }
 
-    /**
-     * @group ZF-8764
-     */
+    #[Group('ZF-8764')]
     public function testLabelIsNotTranslatedTwice()
     {
         $translations = array('firstLabel'  => 'secondLabel',
@@ -176,8 +175,8 @@ class Zend_Form_Element_SubmitTest extends PHPUnit\Framework\TestCase
 
     /**
      * Tests that the isChecked method works as expected when using a translator.
-     * @group ZF-4073
      */
+    #[Group('ZF-4073')]
     public function testIsCheckedReturnsExpectedValueWhenUsingTranslator()
     {
         $translations = array('label' => 'translation');

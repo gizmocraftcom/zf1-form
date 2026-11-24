@@ -20,6 +20,8 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -27,8 +29,8 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Form
  */
+#[Group('Zend_Form')]
 class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
 {
     protected $error;
@@ -282,9 +284,7 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
         $this->assertFalse($this->group->getDecorator('form'));
     }
 
-    /**
-     * @group ZF-3069
-     */
+    #[Group('ZF-3069')]
     public function testRemovingNamedDecoratorsShouldWork()
     {
         $this->group->setDecorators(array(
@@ -325,9 +325,7 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
         $this->assertEquals('fieldset', $decorator->getOption('tag'));
     }
 
-    /**
-     * @group ZF-3494
-     */
+    #[Group('ZF-3494')]
     public function testGetViewShouldNotReturnNullWhenViewRendererIsActive()
     {
         $viewRenderer = Zend_Controller_Action_HelperBroker::getStaticHelper('ViewRenderer');
@@ -500,9 +498,7 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
         $this->assertSame(array('b', 'c', 'a'), $order);
     }
 
-    /**
-     * @doesNotPerformAssertions
-     */
+    #[DoesNotPerformAssertions]
     public function testRemovingElementsShouldNotRaiseExceptionsDuringIteration()
     {
         $this->setupIteratorElements();
@@ -547,9 +543,7 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
         $this->assertEquals('foobar', $this->group->getAttrib('class'));
     }
 
-    /**
-     * @doesNotPerformAssertions
-     */
+    #[DoesNotPerformAssertions]
     public function testSetOptionsOmitsAccessorsRequiringObjectsOrMultipleParams()
     {
         $options                 = $this->getOptions();
@@ -697,9 +691,7 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
         $this->assertEmpty($decorators);
     }
 
-    /**
-     * @group ZF-3217
-     */
+    #[Group('ZF-3217')]
     public function testGroupShouldOverloadToRenderDecorators()
     {
         $foo = new Zend_Form_Element_Text('foo');
@@ -720,9 +712,7 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('this is the content', $html);
     }
 
-    /**
-     * @group ZF-3217
-     */
+    #[Group('ZF-3217')]
     public function testOverloadingToInvalidMethodsShouldThrowAnException()
     {
         $this->expectException(\Zend_Form_Exception::class);
@@ -741,9 +731,7 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
         $this->assertSame($this->group, $this->group->loadDefaultDecorators());
     }
 
-    /**
-     * @group ZF-7552
-     */
+    #[Group('ZF-7552')]
     public function testAddDecoratorsKeepsNonNumericKeyNames()
     {
         $this->group->addDecorators(array(array(array('td' => 'HtmlTag'),
@@ -757,17 +745,13 @@ class Zend_Form_DisplayGroupTest extends PHPUnit\Framework\TestCase
         $this->assertEquals($t1, $t2);
     }
 
-    /**
-     * @group ZF-12375
-     */
+    #[Group('ZF-12375')]
     public function testHasTranslatorWithDefaultValue()
     {
         $this->assertFalse($this->group->hasTranslator());
     }
 
-    /**
-     * @group ZF-12375
-     */
+    #[Group('ZF-12375')]
     public function testHasTranslatorWithTranslateObject()
     {
         $this->group->setTranslator(

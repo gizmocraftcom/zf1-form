@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_Form_Decorator_Errors
@@ -29,8 +30,8 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Form
  */
+#[Group('Zend_Form')]
 class Zend_Form_Decorator_ErrorsTest extends PHPUnit\Framework\TestCase
 {
     protected $decorator;
@@ -128,9 +129,7 @@ class Zend_Form_Decorator_ErrorsTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString($content . $this->decorator->getSeparator() . '<ul', $test, $test);
     }
 
-    /**
-     * @group ZF-11476?
-     */
+    #[Group('ZF-11476?')]
     public function testRenderingWithFormAsElement()
     {
         // Set up form
@@ -162,9 +161,7 @@ class Zend_Form_Decorator_ErrorsTest extends PHPUnit\Framework\TestCase
         );
     }
 
-    /**
-     * @group ZF-11476?
-     */
+    #[Group('ZF-11476?')]
     public function testRenderingWithSubFormAsElement()
     {
         // Set up sub form

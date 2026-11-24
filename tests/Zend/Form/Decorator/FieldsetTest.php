@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_Form_Decorator_Fieldset
@@ -29,8 +30,8 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Form
  */
+#[Group('Zend_Form')]
 class Zend_Form_Decorator_FieldsetTest extends PHPUnit\Framework\TestCase
 {
     protected $decorator;
@@ -106,9 +107,7 @@ class Zend_Form_Decorator_FieldsetTest extends PHPUnit\Framework\TestCase
         $this->assertEquals('this is a legend', $this->decorator->getLegend());
     }
 
-    /**
-     * @group ZF-7054
-     */
+    #[Group('ZF-7054')]
     public function testCustomIdSupersedesElementId()
     {
         $form = new Zend_Form_SubForm();
@@ -120,9 +119,7 @@ class Zend_Form_Decorator_FieldsetTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('foo-id', $html);
     }
 
-    /**
-     * @group ZF-2981
-     */
+    #[Group('ZF-2981')]
     public function testActionAndMethodAttributesShouldNotBePresentInFieldsetTag()
     {
         $form = new Zend_Form();
@@ -137,8 +134,8 @@ class Zend_Form_Decorator_FieldsetTest extends PHPUnit\Framework\TestCase
     }
 
     /**#@+
-     * @group ZF-3731
      */
+    #[Group('ZF-3731')]
     public function testIdShouldBePrefixedWithFieldset()
     {
         $form = new Zend_Form();
@@ -163,9 +160,7 @@ class Zend_Form_Decorator_FieldsetTest extends PHPUnit\Framework\TestCase
     }
     /**#@-*/
 
-    /**
-     * @group ZF-3728
-     */
+    #[Group('ZF-3728')]
     public function testEnctypeAttributeShouldNotBePresentInFieldsetTag()
     {
         $form = new Zend_Form();
@@ -179,9 +174,7 @@ class Zend_Form_Decorator_FieldsetTest extends PHPUnit\Framework\TestCase
         $this->assertStringNotContainsString('enctype="', $test);
     }
 
-    /**
-     * @group ZF-3499
-     */
+    #[Group('ZF-3499')]
     public function testHelperAttributeShouldNotBePresentInFieldsetTag()
     {
         $form = new Zend_Form();
@@ -195,9 +188,7 @@ class Zend_Form_Decorator_FieldsetTest extends PHPUnit\Framework\TestCase
         $this->assertStringNotContainsString('helper="', $test);
     }
 
-    /**
-     * @group ZF-10679
-     */
+    #[Group('ZF-10679')]
     public function testFieldsetIdOverridesFormId()
     {
         $form = new Zend_Form();
@@ -210,9 +201,7 @@ class Zend_Form_Decorator_FieldsetTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('<fieldset id="fieldset-id"', $html);
     }
 
-    /**
-     * @group ZF-8822
-     */
+    #[Group('ZF-8822')]
     public function testStripAcceptCharsetAttribute()
     {
         $form = new Zend_Form();
@@ -224,9 +213,7 @@ class Zend_Form_Decorator_FieldsetTest extends PHPUnit\Framework\TestCase
         $this->assertEquals('<fieldset></fieldset>', $html);
     }
 
-    /**
-     * @group ZF-10803
-     */
+    #[Group('ZF-10803')]
     public function testFormIdOverridesFieldsetId()
     {
         $form = new Zend_Form();

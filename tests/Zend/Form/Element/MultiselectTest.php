@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_Form_Element_Multiselect
@@ -29,8 +30,8 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Form
  */
+#[Group('Zend_Form')]
 class Zend_Form_Element_MultiselectTest extends PHPUnit\Framework\TestCase
 {
     /**
@@ -133,9 +134,7 @@ class Zend_Form_Element_MultiselectTest extends PHPUnit\Framework\TestCase
         $this->assertEquals(array('bar' => 'barvalue', 'baz' => 'bazvalue', 'bat' => 'batvalue', 'foo' => 'foovalue', 'test' => 'testvalue'), $this->element->getMultiOptions());
     }
 
-    /**
-     * @group ZF-2824
-     */
+    #[Group('ZF-2824')]
     public function testCanSetMultiOptionsUsingAssocArraysWithKeyValueKeys()
     {
         $options = array(
@@ -158,9 +157,7 @@ class Zend_Form_Element_MultiselectTest extends PHPUnit\Framework\TestCase
         $this->assertEquals($options[2]['value'], $this->element->getMultiOption('ssss'));
     }
 
-    /**
-     * @group ZF-2824
-     */
+    #[Group('ZF-2824')]
     public function testCanSetMultiOptionsUsingConfigWithKeyValueKeys()
     {
         $config = new Zend_Config_Xml(dirname(__FILE__) . '/../_files/config/multiOptions.xml', 'testing');
@@ -265,9 +262,7 @@ class Zend_Form_Element_MultiselectTest extends PHPUnit\Framework\TestCase
         $this->assertTrue($this->element->isArray());
     }
 
-    /**
-     * @group ZF-5568
-     */
+    #[Group('ZF-5568')]
     public function testOptGroupTranslationsShouldWorkAfterPopulatingElement()
     {
         $translations = array(
@@ -294,9 +289,7 @@ class Zend_Form_Element_MultiselectTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString($translations['ThisIsTheLabel'], $html, $html);
     }
 
-    /**
-     * @group ZF-5937
-     */
+    #[Group('ZF-5937')]
     public function testAddMultiOptionShouldWorkAfterTranslatorIsDisabled()
     {
         $options = array(
@@ -308,9 +301,7 @@ class Zend_Form_Element_MultiselectTest extends PHPUnit\Framework\TestCase
         $this->assertEquals($options['foovalue'], $test);
     }
 
-    /**
-     * @group ZF-11667
-     */
+    #[Group('ZF-11667')]
     public function testSimilarErrorMessagesForMultiElementAreNotDuplicated()
     {
         $this->element->setConcatJustValuesInErrorMessage(true);

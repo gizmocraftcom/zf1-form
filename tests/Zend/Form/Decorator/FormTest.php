@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_Form_Decorator_Form
@@ -29,8 +30,8 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Form
  */
+#[Group('Zend_Form')]
 class Zend_Form_Decorator_FormTest extends PHPUnit\Framework\TestCase
 {
     protected $decorator;
@@ -88,9 +89,7 @@ class Zend_Form_Decorator_FormTest extends PHPUnit\Framework\TestCase
         $this->assertEquals($attribs['charset'], $options['charset']);
     }
 
-    /**
-     * @group ZF-3643
-     */
+    #[Group('ZF-3643')]
     public function testShouldPreferFormIdAttributeOverFormName()
     {
         $form = new Zend_Form();

@@ -20,6 +20,8 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_Form_Element_Select
@@ -29,8 +31,8 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Form
  */
+#[Group('Zend_Form')]
 class Zend_Form_Element_SelectTest extends PHPUnit\Framework\TestCase
 {
     protected $element;
@@ -119,9 +121,9 @@ class Zend_Form_Element_SelectTest extends PHPUnit\Framework\TestCase
     /**
      * No explicit assertions; just checking for error conditions
      *
-     * @group ZF-2847
-     * @doesNotPerformAssertions
      */
+    #[Group('ZF-2847')]
+    #[DoesNotPerformAssertions]
     public function testTranslationShouldNotRaiseWarningsWithNestedGroups()
     {
         $translate = new Zend_Translate('array', array('Select Test', 'Select Test Translated'), 'en');
@@ -142,9 +144,7 @@ class Zend_Form_Element_SelectTest extends PHPUnit\Framework\TestCase
         $html = $this->element->render();
     }
 
-    /**
-     * @group ZF-3953
-     */
+    #[Group('ZF-3953')]
     public function testUsingZeroAsValueShouldSelectAppropriateOption()
     {
         $this->element->setMultiOptions(array(
@@ -161,9 +161,7 @@ class Zend_Form_Element_SelectTest extends PHPUnit\Framework\TestCase
         $this->assertStringNotContainsString('selected', $matches[1]);
     }
 
-    /**
-     * @group ZF-4390
-     */
+    #[Group('ZF-4390')]
     public function testEmptyOptionsShouldNotBeTranslated()
     {
         $translate = new Zend_Translate('array', array('unused', 'foo' => 'bar'), 'en');
@@ -182,8 +180,8 @@ class Zend_Form_Element_SelectTest extends PHPUnit\Framework\TestCase
      * Test isValid() on select elements without optgroups. This
      * ensures fixing ZF-3985 doesn't break existing functionality.
      *
-     * @group ZF-3985
      */
+    #[Group('ZF-3985')]
     public function testIsValidWithPlainOptions()
     {
         // test both syntaxes for setting plain options
@@ -198,9 +196,7 @@ class Zend_Form_Element_SelectTest extends PHPUnit\Framework\TestCase
         $this->assertFalse($this->element->isValid('Web Developer'));
     }
 
-    /**
-     * @group ZF-3985
-     */
+    #[Group('ZF-3985')]
     public function testIsValidWithOptionGroups()
     {
         // test optgroup and both syntaxes for setting plain options
@@ -221,9 +217,7 @@ class Zend_Form_Element_SelectTest extends PHPUnit\Framework\TestCase
         $this->assertFalse($this->element->isValid('Web Developer'));
     }
 
-    /**
-     * @group ZF-8342
-     */
+    #[Group('ZF-8342')]
     public function testUsingPoundSymbolInOptionLabelShouldRenderCorrectly()
     {
         $this->element->addMultiOption('1', '£' . number_format(1));
@@ -231,9 +225,7 @@ class Zend_Form_Element_SelectTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('>£', $html);
     }
 
-    /**
-     * @group ZF-8452
-     */
+    #[Group('ZF-8452')]
     public function testRenderingAsArray()
     {
         $this->element->addMultiOption('bar', 'Bar')

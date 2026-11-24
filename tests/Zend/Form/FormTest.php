@@ -20,6 +20,8 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -27,8 +29,8 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Form
  */
+#[Group('Zend_Form')]
 class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 {
     protected $elementValues;
@@ -104,9 +106,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertEquals('put', $form->getMethod());
     }
 
-    /**
-     * @doesNotPerformAssertions
-     */
+    #[DoesNotPerformAssertions]
     public function testSetOptionsSkipsCallsToSetOptionsAndSetConfig()
     {
         $options            = $this->getOptions();
@@ -116,9 +116,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->form->setOptions($options);
     }
 
-    /**
-     * @doesNotPerformAssertions
-     */
+    #[DoesNotPerformAssertions]
     public function testSetOptionsSkipsSettingAccessorsRequiringObjectsWhenNonObjectPassed()
     {
         $options                 = $this->getOptions();
@@ -360,10 +358,8 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertEquals(15, $this->form->ghiabc->getOrder());
     }
 
-    /**
-     * @group ZF-3250
-     * @doesNotPerformAssertions
-     */
+    #[Group('ZF-3250')]
+    #[DoesNotPerformAssertions]
     public function testDisplayGroupOrderInConfigShouldNotMatter()
     {
         $config = new Zend_Config_Xml(dirname(__FILE__) . '/_files/config/zf3250.xml', 'sitearea', true);
@@ -371,9 +367,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         // no assertions needed; throws error if order matters
     }
 
-    /**
-     * @group ZF-3112
-     */
+    #[Group('ZF-3112')]
     public function testSetOptionsShouldCreateDisplayGroupsLast()
     {
         $options                  = array();
@@ -555,9 +549,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertEquals('/foo/bar', $this->form->getAction());
     }
 
-    /**
-     * @group ZF-7067
-     */
+    #[Group('ZF-7067')]
     public function testCanSetActionWithGetParams()
     {
         $this->testActionDefaultsToEmptyString();
@@ -1087,9 +1079,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertFalse($this->form->isArray());
     }
 
-    /**
-     * @group ZF-6741
-     */
+    #[Group('ZF-6741')]
     public function testUseIdForDdTagByDefault()
     {
         $this->form->addSubForm(new Zend_Form_SubForm(), 'bar')
@@ -1108,9 +1098,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertMatchesRegularExpression('/<dt.*?bar-foo.*?>/', $html);
     }
 
-    /**
-     * @group ZF-3146
-     */
+    #[Group('ZF-3146')]
     public function testSetElementsBelongToShouldApplyToBothExistingAndFutureElements()
     {
         $this->form->addElement('text', 'testBelongsTo');
@@ -1123,9 +1111,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-3742
-     */
+    #[Group('ZF-3742')]
     public function testElementsInDisplayGroupsShouldInheritFormElementsBelongToSetting()
     {
         $subForm = new Zend_Form_SubForm();
@@ -1479,9 +1465,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertTrue($this->form->isValid($data));
     }
 
-    /**
-     * @group ZF-9679
-     */
+    #[Group('ZF-9679')]
     public function testIsValidDiscardsValidatedValues()
     {
         $this->form->addElement('text', 'foo');
@@ -1493,9 +1477,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertTrue($this->form->isValid(array('foo' => 'foo Value')));
     }
 
-    /**
-     * @group ZF-9666
-     */
+    #[Group('ZF-9666')]
     public function testSetDefaultsDiscardsPopulatedValues()
     {
         $this->form->addElement('text', 'foo');
@@ -1946,9 +1928,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertTrue($this->form->foobar instanceof Zend_Form_FormTest_DisplayGroup);
     }
 
-    /**
-     * @group ZF-3254
-     */
+    #[Group('ZF-3254')]
     public function testAddingDisplayGroupShouldPassOptions()
     {
         $this->testCanAddAndRetrieveMultipleElements();
@@ -2477,9 +2457,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertTrue($this->form->hasErrors());
     }
 
-    /**
-     * @group ZF-9914
-     */
+    #[Group('ZF-9914')]
     public function testDeprecatedIsErrorsProxiesToHasErrors()
     {
         $this->testCanValidateFullFormContainingOnlyElements();
@@ -2741,9 +2719,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @Group ZF-9697
-     */
+    #[Group('ZF-9697')]
     public function _setup9697()
     {
         $callback = function ($value, $options) {
@@ -2784,9 +2760,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertSame($data, $this->form->getValidValues($data));
     }
 
-    /**
-     * @group ZF-2988
-     */
+    #[Group('ZF-2988')]
     public function testSettingErrorMessageShouldOverrideValidationErrorMessages()
     {
         $this->form->addElement('text', 'foo', array('validators' => array('Alpha')));
@@ -2992,9 +2966,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertFalse($this->form->getDecorator('form'));
     }
 
-    /**
-     * @group ZF-3069
-     */
+    #[Group('ZF-3069')]
     public function testRemovingNamedDecoratorShouldWork()
     {
         $this->form->setDecorators(array(
@@ -3428,9 +3400,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertSame($expected, $received);
     }
 
-    /**
-     * @doesNotPerformAssertions
-     */
+    #[DoesNotPerformAssertions]
     public function testRemovingFormItemsShouldNotRaiseExceptionsDuringIteration()
     {
         $this->setupElements();
@@ -3468,9 +3438,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @doesNotPerformAssertions
-     */
+    #[DoesNotPerformAssertions]
     public function testClearingAttachedItemsShouldNotCauseIterationToRaiseExceptions()
     {
         $form = new Zend_Form();
@@ -3563,9 +3531,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-3597
-     */
+    #[Group('ZF-3597')]
     public function testSettingElementDecoratorsWithConcreteDecoratorShouldHonorOrder()
     {
         $this->form->setDecorators(array(
@@ -3589,9 +3555,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertMatchesRegularExpression('#<tr><td>Foo</td><td>.*?<input[^>]+>.*?</td><td>sample description</td></tr>#s', $html, $html);
     }
 
-    /**
-     * @group ZF-3228
-     */
+    #[Group('ZF-3228')]
     public function testShouldAllowSpecifyingSpecificElementsToDecorate()
     {
         $this->setupElements();
@@ -3709,9 +3673,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertInstanceOf(My_Decorator_Label::class, $label, get_class($label));
     }
 
-    /**
-     * @group ZF-3093
-     */
+    #[Group('ZF-3093')]
     public function testSettingElementPrefixPathPropagatesToAttachedSubForms()
     {
         $subForm = new Zend_Form_SubForm();
@@ -3812,9 +3774,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-3213
-     */
+    #[Group('ZF-3213')]
     public function testShouldAllowSettingDisplayGroupPrefixPathViaConfigOptions()
     {
         $config = new Zend_Config_Ini(dirname(__FILE__) . '/_files/config/zf3213.ini', 'form');
@@ -3854,9 +3814,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     // Clone
 
-    /**
-     * @group ZF-3819
-     */
+    #[Group('ZF-3819')]
     public function testCloningShouldCloneAllChildren()
     {
         $form = new Zend_Form();
@@ -3889,9 +3847,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
 
     // Reset
 
-    /**
-     * @group ZF-3227
-     */
+    #[Group('ZF-3227')]
     public function testFormsShouldAllowResetting()
     {
         $form = new Zend_Form();
@@ -3927,9 +3883,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertEquals(0, array_sum($test));
     }
 
-    /**
-     * @group ZF-3217
-     */
+    #[Group('ZF-3217')]
     public function testFormShouldOverloadToRenderDecorators()
     {
         $this->setupElements();
@@ -3947,9 +3901,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('this is the content', $html);
     }
 
-    /**
-     * @group ZF-3217
-     */
+    #[Group('ZF-3217')]
     public function testOverloadingToInvalidMethodsShouldThrowAnException()
     {
         $this->expectException(\Zend_Form_Exception::class);
@@ -3957,9 +3909,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $html = $this->form->bogusMethodCall();
     }
 
-    /**
-     * @group ZF-2950
-     */
+    #[Group('ZF-2950')]
     public function testDtDdElementsWithLabelGetUniqueId()
     {
         $form = new Zend_Form();
@@ -3976,9 +3926,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('<dd id="foo-element">', $html);
     }
 
-    /**
-     * @group ZF-2950
-     */
+    #[Group('ZF-2950')]
     public function testDtDdElementsWithoutLabelGetUniqueId()
     {
         $form = new Zend_Form();
@@ -3991,9 +3939,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('<dd id="foo-element">', $html);
     }
 
-    /**
-     * @group ZF-2950
-     */
+    #[Group('ZF-2950')]
     public function testSubFormGetsUniqueIdWithName()
     {
         $form = new Zend_Form();
@@ -4007,9 +3953,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('<dd id="testform-element">', $html);
     }
 
-    /**
-     * @group ZF-5370
-     */
+    #[Group('ZF-5370')]
     public function testEnctypeDefaultsToMultipartWhenFileElementIsAttachedToForm()
     {
         $file = new Zend_Form_Element_File('txt');
@@ -4020,9 +3964,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertMatchesRegularExpression('#<form[^>]+enctype="multipart/form-data"#', $html);
     }
 
-    /**
-     * @group ZF-5370
-     */
+    #[Group('ZF-5370')]
     public function testEnctypeDefaultsToMultipartWhenFileElementIsAttachedToSubForm()
     {
         $subForm = new Zend_Form_SubForm();
@@ -4036,9 +3978,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertMatchesRegularExpression('#<form[^>]+enctype="multipart/form-data"#', $html, $html);
     }
 
-    /**
-     * @group ZF-5370
-     */
+    #[Group('ZF-5370')]
     public function testEnctypeDefaultsToMultipartWhenFileElementIsAttachedToDisplayGroup()
     {
         $this->form->addElement('file', 'txt')
@@ -4051,9 +3991,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertMatchesRegularExpression('#<form[^>]+enctype="multipart/form-data"#', $html, $html);
     }
 
-    /**
-     * @group ZF-6070
-     */
+    #[Group('ZF-6070')]
     public function testIndividualElementDecoratorsShouldOverrideGlobalElementDecorators()
     {
         $this->form->setOptions(array(
@@ -4082,18 +4020,14 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertSame($expected, $actual);
     }
 
-    /**
-     * @group ZF-5150
-     */
+    #[Group('ZF-5150')]
     public function testIsValidShouldFailIfAddErrorHasBeenCalled()
     {
         $this->form->addError('Error');
         $this->assertFalse($this->form->isValid(array()));
     }
 
-    /**
-     * @group ZF-8494
-     */
+    #[Group('ZF-8494')]
     public function testGetValidValues()
     {
         $data = array('valid' => 1234, 'invalid' => 'invalid', 'noElement' => 'noElement');
@@ -4109,9 +4043,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertEquals(array('valid' => 1234), $this->form->getValidValues($data));
     }
 
-    /**
-     * @group ZF-8494
-     */
+    #[Group('ZF-8494')]
     public function testGetValidSubFormValues()
     {
         $data = array('sub' => array('valid' => 1234, 'invalid' => 'invalid', 'noElement' => 'noElement'));
@@ -4130,9 +4062,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertEquals(array('sub' => array('valid' => 1234)), $this->form->getValidValues($data));
     }
 
-    /**
-    * @group ZF-9275
-    */
+    #[Group('ZF-9275')]
     public function testElementTranslatorNotOverriddenbyGlobalTranslatorDuringValidation()
     {
         $translator = new Zend_Translate('array', array('foo' => 'bar'));
@@ -4145,9 +4075,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertSame(false, $received);
     }
 
-    /**
-    * @group ZF-9275
-    */
+    #[Group('ZF-9275')]
     public function testZendValidateDefaultTranslatorOverridesZendTranslateDefaultTranslator()
     {
         $translate = new Zend_Translate('array', array('isEmpty' => 'translate'));
@@ -4162,9 +4090,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertSame(array('isEmpty' => 'validate'), $this->form->foo->getMessages());
     }
 
-    /**
-     * @group ZF-9494
-     */
+    #[Group('ZF-9494')]
     public function testElementTranslatorNotOveriddenbyFormTranslator()
     {
         $translations = array(
@@ -4183,9 +4109,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertEquals('Element message', $messages['foo']['isEmpty']);
     }
 
-    /**
-     * @group ZF-9364
-     */
+    #[Group('ZF-9364')]
     public function testElementTranslatorPreferredOverFormTranslator()
     {
         $formTanslations = array(
@@ -4213,9 +4137,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertEquals('Form message', $messages['bar']['isEmpty']);
     }
 
-    /**
-     * @group ZF-9364
-     */
+    #[Group('ZF-9364')]
     public function testElementTranslatorPreferredOverDefaultTranslator()
     {
         $defaultTranslations = array(
@@ -4249,9 +4171,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertEquals('Form message', $messages['bar']['isEmpty']);
     }
 
-    /**
-     * @group ZF-9540
-     */
+    #[Group('ZF-9540')]
     public function testSubFormTranslatorPreferredOverDefaultTranslator()
     {
         $defaultTranslations = array('isEmpty' => 'Default message');
@@ -4274,9 +4194,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertEquals('SubForm message', $messages['subform']['foo']['isEmpty']);
     }
 
-    /**
-     * @group ZF-12375
-     */
+    #[Group('ZF-12375')]
     public function testElementTranslatorNotOveriddenbyFormTranslatorDuringRendering()
     {
         // Set translator for form
@@ -4339,9 +4257,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         );
     }
 
-    /**
-     * @group ZF-5613
-     */
+    #[Group('ZF-5613')]
     public function testAddSubFormsPerConfig()
     {
         // Create form
@@ -4442,9 +4358,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertSame($this->form, $this->form->loadDefaultDecorators());
     }
 
-    /**
-     * @group ZF-7552
-     */
+    #[Group('ZF-7552')]
     public function testAddDecoratorsKeepsNonNumericKeyNames()
     {
         $this->form->addDecorators(array(array(array('td' => 'HtmlTag'),
@@ -4458,9 +4372,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertEquals($t1, $t2);
     }
 
-    /**
-     * @group ZF-10411
-     */
+    #[Group('ZF-10411')]
     public function testAddingElementToDisplayGroupManuallyShouldPreventRenderingByForm()
     {
         $form = new Zend_Form_FormTest_AddToDisplayGroup();
@@ -4468,11 +4380,9 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertEquals(1, substr_count($html, 'Customer Type'), $html);
     }
 
-    /**
-     * @group ZF-10491
-     * @group ZF-10734
-     * @group ZF-10731
-     */
+    #[Group('ZF-10491')]
+    #[Group('ZF-10734')]
+    #[Group('ZF-10731')]
     public function testAddElementToDisplayGroupByElementInstance()
     {
         $element    = new Zend_Form_Element_Text('foo');
@@ -4495,9 +4405,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertNotNull($displayGroup->getElement('baz'));
     }
 
-    /**
-     * @group ZF-10149
-     */
+    #[Group('ZF-10149')]
     public function testIfViewIsSetInTime()
     {
         try {
@@ -4514,9 +4422,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertNotEquals($result, '');
     }
 
-    /**
-     * @group ZF-11088
-     */
+    #[Group('ZF-11088')]
     public function testAddErrorOnElementMakesFormInvalidAndReturnsCustomError()
     {
         $element     = new Zend_Form_Element_Text('foo');
@@ -4534,9 +4440,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertSame($errorString, $errorMessages2[0]);
     }
 
-    /**
-     * @group ZF-10865
-     */
+    #[Group('ZF-10865')]
     public function testExceptionThrownWhenAddElementsIsGivenNullValue()
     {
         $this->expectException(\Zend_Form_Exception::class);
@@ -4545,9 +4449,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $form->addElement(null);
     }
 
-    /**
-     * @group ZF-11729
-     */
+    #[Group('ZF-11729')]
     public function testDashSeparatedElementsInDisplayGroupsShouldNotRenderOutsideDisplayGroup()
     {
         $form = new Zend_Form();
@@ -4563,9 +4465,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertEquals(1, $count, $html);
     }
 
-    /**
-     * @group ZF-11831
-     */
+    #[Group('ZF-11831')]
     public function testElementsOfSubFormReceiveCorrectDefaultTranslator()
     {
         // Global default translator
@@ -4618,9 +4518,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         );
     }
 
-    /**
-     * @group ZF-12173
-     */
+    #[Group('ZF-12173')]
     public function testAddingPrefixPathsWithBackslashWillLoadNamespacedPlugins()
     {
         $form = new Zend_Form();
@@ -4634,9 +4532,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-8942
-     */
+    #[Group('ZF-8942')]
     public function testCreateElementIncludesElementDecorators()
     {
         // Init form
@@ -4663,9 +4559,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /**
-     * @group ZF-12387
-     */
+    #[Group('ZF-12387')]
     public function testAddElementAsObjectWithDecoratorsShouldNotLoseDecorators()
     {
         // Init form
@@ -4695,9 +4589,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /**
-     * @group ZF-12387
-     */
+    #[Group('ZF-12387')]
     public function testAddElementAsObjectGetsElementDecoratorsIfNoneIsExplicitlySet()
     {
         // Init form
@@ -4730,9 +4622,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertEquals($expected, $actual);
     }
 
-    /**
-     * @group GH-319
-     */
+    #[Group('GH-319')]
     public function testHasErrorsMethodShouldCheckAlsoElements()
     {
         // Init form
@@ -4751,9 +4641,7 @@ class Zend_Form_FormTest extends PHPUnit\Framework\TestCase
         $this->assertFalse($element->isValid(1));
     }
 
-    /**
-     * @group GH-319
-     */
+    #[Group('GH-319')]
     public function testHasErrorsMethodShouldCheckAlsoSubForms()
     {
         // Init form

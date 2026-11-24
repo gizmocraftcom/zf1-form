@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Test class for Zend_Form_Decorator_Description
@@ -29,8 +30,8 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Form
  */
+#[Group('Zend_Form')]
 class Zend_Form_Decorator_DescriptionTest extends PHPUnit\Framework\TestCase
 {
     protected $decorator;
@@ -164,9 +165,7 @@ class Zend_Form_Decorator_DescriptionTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString($translations['description'], $html);
     }
 
-    /**
-     * @group ZF-8694
-     */
+    #[Group('ZF-8694')]
     public function testDescriptionIsNotTranslatedTwice()
     {
         // Init translator

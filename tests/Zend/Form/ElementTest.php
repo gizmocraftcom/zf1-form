@@ -20,6 +20,8 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -27,8 +29,8 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Form
  */
+#[Group('Zend_Form')]
 class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
 {
     protected $error;
@@ -85,9 +87,7 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
         $element = new Zend_Form_Element($config);
     }
 
-    /**
-     * @doesNotPerformAssertions
-     */
+    #[DoesNotPerformAssertions]
     public function testConstructorRequiresMinimallyElementName()
     {
         try {
@@ -163,9 +163,7 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @group ZF-2851
-     */
+    #[Group('ZF-2851')]
     public function testSetNameShouldNotAllowEmptyString()
     {
         foreach (array('', ' ', '   ') as $name) {
@@ -291,9 +289,7 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
         $this->assertTrue($validator->zfBreakChainOnFailure);
     }
 
-    /**
-     * @group ZF-2862
-     */
+    #[Group('ZF-2862')]
     public function testBreakChainOnFailureFlagsForExistingValidatorsRemainSetWhenNotEmptyValidatorAutoInserted()
     {
         $username = new Zend_Form_Element('username');
@@ -441,9 +437,7 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
         $this->assertEquals($attribs, $received);
     }
 
-    /**
-     * @group ZF-6061
-     */
+    #[Group('ZF-6061')]
     public function testHelperDoesNotShowUpInAttribs()
     {
         $attribs = array(
@@ -826,8 +820,8 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
     }
 
     /**#@+
-     * @group ZF-2988
      */
+    #[Group('ZF-2988')]
     public function testSettingErrorMessageShouldOverrideValidationErrorMessages()
     {
         $this->element->addValidator('Alpha');
@@ -1005,9 +999,7 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
         }
     }
 
-    /**
-     * @doesNotPerformAssertions
-     */
+    #[DoesNotPerformAssertions]
     public function testCanValidateElement()
     {
         $this->element->addValidator(new Zend_Validate_NotEmpty())
@@ -1248,18 +1240,14 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
         $this->assertInstanceOf(Zend_Form_Decorator_ViewHelper::class, $decorator);
     }
 
-    /**
-     * @group ZF-4822
-     */
+    #[Group('ZF-4822')]
     public function testErrorsDecoratorRegisteredByDefault()
     {
         $decorator = $this->element->getDecorator('errors');
         $this->assertInstanceOf(Zend_Form_Decorator_Errors::class, $decorator);
     }
 
-    /**
-     * @group ZF-4822
-     */
+    #[Group('ZF-4822')]
     public function testDescriptionDecoratorRegisteredByDefault()
     {
         $decorator = $this->element->getDecorator('description');
@@ -1271,18 +1259,14 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
         $this->assertEquals('description', $options['class']);
     }
 
-    /**
-     * @group ZF-4822
-     */
+    #[Group('ZF-4822')]
     public function testHtmlTagDecoratorRegisteredByDefault()
     {
         $decorator = $this->element->getDecorator('HtmlTag');
         $this->assertInstanceOf(Zend_Form_Decorator_HtmlTag::class, $decorator);
     }
 
-    /**
-     * @group ZF-4822
-     */
+    #[Group('ZF-4822')]
     public function testLabelDecoratorRegisteredByDefault()
     {
         $decorator = $this->element->getDecorator('Label');
@@ -1332,9 +1316,7 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
         $this->assertSame($decorator, $test);
     }
 
-    /**
-     * @group ZF-3597
-     */
+    #[Group('ZF-3597')]
     public function testAddingConcreteDecoratorShouldHonorOrder()
     {
         require_once dirname(__FILE__) . '/_files/decorators/TableRow.php';
@@ -1390,9 +1372,7 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
         $this->assertFalse($this->element->getDecorator('viewHelper'));
     }
 
-    /**
-     * @group ZF-3069
-     */
+    #[Group('ZF-3069')]
     public function testRemovingNamedDecoratorsShouldWork()
     {
         $this->element->setDecorators(array(
@@ -1454,9 +1434,7 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
         $this->assertEquals(2, $order['inner'], var_export($order, 1));
     }
 
-    /**
-     * @group ZF-3376
-     */
+    #[Group('ZF-3376')]
     public function testSetDecoratorsShouldAcceptReturnOfGetDecorators()
     {
         $this->element->setDecorators(array(
@@ -1589,9 +1567,7 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
         $this->assertEquals('bat', $this->element->baz);
     }
 
-    /**
-     * @doesNotPerformAssertions
-     */
+    #[DoesNotPerformAssertions]
     public function testSetOptionsSkipsCallsToSetOptionsAndSetConfig()
     {
         $options            = $this->getOptions();
@@ -1601,9 +1577,7 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
         $this->element->setOptions($options);
     }
 
-    /**
-     * @doesNotPerformAssertions
-     */
+    #[DoesNotPerformAssertions]
     public function testSetOptionsSkipsSettingAccessorsRequiringObjectsWhenNoObjectPresent()
     {
         $options                 = $this->getOptions();
@@ -1879,9 +1853,7 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
         $this->assertEmpty($decorators);
     }
 
-    /**
-     * @group ZF-3217
-     */
+    #[Group('ZF-3217')]
     public function testElementShouldOverloadToRenderDecorators()
     {
         $this->element->setLabel('Foo Label')
@@ -1898,9 +1870,7 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
         $this->assertStringNotContainsString('<input', $html);
     }
 
-    /**
-     * @group ZF-3217
-     */
+    #[Group('ZF-3217')]
     public function testOverloadingToInvalidMethodsShouldThrowAnException()
     {
         $this->expectException(\Zend_Form_Element_Exception::class);
@@ -1908,9 +1878,7 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
         $html = $this->element->bogusMethodCall();
     }
 
-    /**
-     * @group ZF-5150
-     */
+    #[Group('ZF-5150')]
     public function testMarkingAsErrorShouldCauseIsErrorToReturnFalse()
     {
         $this->element->setValue('foo');
@@ -1918,18 +1886,14 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
         $this->assertFalse($this->element->isValid('foo'));
     }
 
-    /**
-     * @group ZF-4915
-     */
+    #[Group('ZF-4915')]
     public function testElementShouldAllowSettingDefaultErrorMessageSeparator()
     {
         $this->element->setErrorMessageSeparator('|');
         $this->assertEquals('|', $this->element->getErrorMessageSeparator());
     }
 
-    /**
-     * @group ZF-4915
-     */
+    #[Group('ZF-4915')]
     public function testElementShouldUseSemicolonAndSpaceAsDefaultErrorMessageSeparator()
     {
         $this->assertEquals('; ', $this->element->getErrorMessageSeparator());
@@ -1959,9 +1923,7 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
         $this->assertEquals('foo', array_shift($messages));
     }
 
-    /**
-     * @group ZF-9275
-     */
+    #[Group('ZF-9275')]
     public function testElementDoesntOverrideDefaultValidatorTranslatorWithDefaultRegistryTranslator()
     {
         $registryTranslations = array('alphaInvalid' => 'Registry message');
@@ -1982,9 +1944,7 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
         $this->assertEquals('Validator message', $messages['alphaInvalid']);
     }
 
-    /**
-     * @group ZF-9275
-     */
+    #[Group('ZF-9275')]
     public function testDefaultTranslatorDoesntOverrideElementTranslatorOnValdiation()
     {
         $registryTranslations = array('alphaInvalid' => 'Registry message');
@@ -2005,9 +1965,7 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
         $this->assertEquals('Element message', $messages['alphaInvalid']);
     }
 
-    /**
-     * @group ZF-9275
-     */
+    #[Group('ZF-9275')]
     public function testValidatorsDefaultTranslatorDoesntOverrideFormsDefaultTranslator()
     {
         $formTranslations = array('alphaInvalid' => 'Form message');
@@ -2025,9 +1983,7 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
         $this->assertEquals('Form message', $messages['alphaInvalid']);
     }
 
-    /**
-     * @group ZF-9275
-     */
+    #[Group('ZF-9275')]
     public function testElementsTranslatorDoesntOverrideValidatorsDirectlyAttachedTranslator()
     {
         $elementTranslations = array('alphaInvalid' => 'Element message');
@@ -2055,9 +2011,7 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
         $this->assertSame($this->element, $this->element->loadDefaultDecorators());
     }
 
-    /**
-     * @group ZF-7552
-     */
+    #[Group('ZF-7552')]
     public function testAddDecoratorsKeepsNonNumericKeyNames()
     {
         $this->element->addDecorators(array(array(array('td' => 'HtmlTag'),
@@ -2082,9 +2036,7 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
         $this->assertTrue($form->isValid(array('username' => 'abcde')));
     }
 
-    /**
-     * @group ZF-6822
-     */
+    #[Group('ZF-6822')]
     public function testValidatorByUsingStringNotation()
     {
         $username = new Zend_Form_Element('username');
@@ -2101,9 +2053,7 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
         $this->assertTrue($validator->zfBreakChainOnFailure);
     }
 
-    /**
-     * @group ZF-12173
-     */
+    #[Group('ZF-12173')]
     public function testCanAddPluginLoaderPrefixPathsWithBackslashes()
     {
         $validatorLoader = new Zend_Loader_PluginLoader();
@@ -2127,9 +2077,7 @@ class Zend_Form_ElementTest extends PHPUnit\Framework\TestCase
         $this->assertStringContainsString('Decorator', $paths[0]);
     }
 
-    /**
-     * @group ZF-12439
-     */
+    #[Group('ZF-12439')]
     public function testSettingAnEmptyArrayValueGeneratesAValidErrorMessage()
     {
         $this->element->setValue(array());
