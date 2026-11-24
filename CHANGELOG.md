@@ -11,5 +11,6 @@ Fork of `diablomedia/zendframework1-form`, published as `gizmocraft/zendframewor
 - Dev dependencies upgraded (PHPUnit 13, PHPStan 2.3, php-cs-fixer 3.95, GrumPHP 2.27). Dropped `composer-require-checker`, which has no release for PHP 8.6.
 - Tests migrated to PHPUnit 13 attributes (`#[Group]`, `#[DataProvider]`, `#[DoesNotPerformAssertions]` instead of annotations, which PHPUnit 12+ ignores; one data-provider test errored with an `ArgumentCountError` and 13 tests were risky until converted). Added a regression test for the `null` attribute value.
 - CI runs PHP 8.5 and 8.6.
-### Known issue
-- `Zend_Form_Element_Hash` with no stored session hash validates with `Zend_Validate_Identical` and a `null` token. In `gizmocraft/zendframework1-validate` 2.0.0 that validator calls `array_key_exists(null, ...)`, which is deprecated since PHP 8.5. The fix belongs in the validate package.
+### Known issue (resolved)
+
+- `Zend_Form_Element_Hash` with no stored session hash validates with `Zend_Validate_Identical` and a `null` token. In `gizmocraft/zendframework1-validate` 2.0.0 that validator calls `array_key_exists(null, ...)`, which is deprecated since PHP 8.5. Fixed in `gizmocraft/zendframework1-validate` 2.0.1, which the `^2.0.0` constraint picks up automatically; no change in this package was needed.
